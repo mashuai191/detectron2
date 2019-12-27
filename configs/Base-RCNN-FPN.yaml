@@ -28,7 +28,7 @@ MODEL:
   ROI_MASK_HEAD:
     NAME: "MaskRCNNConvUpsampleHead"
     NUM_CONV: 4
-    POOLER_RESOLUTION: 112
+    POOLER_RESOLUTION: 56
 DATASETS:
   TRAIN: ("coco_2017_train",)
   TEST: ("coco_2017_val",)
