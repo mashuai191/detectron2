@@ -578,8 +578,14 @@ class StandardROIHeads(ROIHeads):
             proposals = self.label_and_sample_proposals(proposals, targets)
         del targets
 
+        
+        print (len(features), len(proposals))
+        print (features)
+        print (proposals)
         if self.training:
             losses = self._forward_box(features, proposals)
+            print (type(losses))
+            print (losses)
             # Usually the original proposals used by the box head are used by the mask, keypoint
             # heads. But when `self.train_on_pred_boxes is True`, proposals will contain boxes
             # predicted by the box head.
