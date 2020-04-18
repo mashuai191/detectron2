@@ -258,7 +258,7 @@ def annotations_to_instances(annos, image_size, mask_format="polygon"):
 
     if len(annos) and "segmentation" in annos[0]:
         #segms = [obj["segmentation"] for obj in annos] shuai
-        segms = [obj["segmentation"] for obj in annos if obj.has("segmentation")]
+        segms = [obj["segmentation"] for obj in annos if "segmentation" in obj]
         if mask_format == "polygon":
             masks = PolygonMasks(segms)
         else:
