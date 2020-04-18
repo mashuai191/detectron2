@@ -257,7 +257,8 @@ def annotations_to_instances(annos, image_size, mask_format="polygon"):
     target.gt_classes = classes
 
     if len(annos) and "segmentation" in annos[0]:
-        segms = [obj["segmentation"] for obj in annos]
+        #segms = [obj["segmentation"] for obj in annos] shuai
+        segms = [obj["segmentation"] for obj in annos if obj.has("segmentation")]
         if mask_format == "polygon":
             masks = PolygonMasks(segms)
         else:
