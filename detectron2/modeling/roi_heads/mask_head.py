@@ -51,11 +51,12 @@ def mask_rcnn_loss(pred_mask_logits, instances, vis_period=0):
             gt_classes_per_image = instances_per_image.gt_classes.to(dtype=torch.int64)
             gt_classes.append(gt_classes_per_image)
 
-        gt_masks_per_image = instances_per_image.gt_masks.crop_and_resize(
-            instances_per_image.proposal_boxes.tensor, mask_side_len
-        ).to(device=pred_mask_logits.device)
-        # A tensor of shape (N, M, M), N=#instances in the image; M=mask_side_len
-        gt_masks.append(gt_masks_per_image)
+        if instances_per_image.has('gt_masks'):
+            gt_masks_per_image = instances_per_image.gt_masks.crop_and_resize(
+                instances_per_image.proposal_boxes.tensor, mask_side_len
+            ).to(device=pred_mask_logits.device)
+            # A tensor of shape (N, M, M), N=#instances in the image; M=mask_side_len
+            gt_masks.append(gt_masks_per_image)
 
     if len(gt_masks) == 0:
         return pred_mask_logits.sum() * 0
