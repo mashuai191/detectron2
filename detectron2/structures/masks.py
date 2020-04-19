@@ -264,7 +264,8 @@ class PolygonMasks:
             # transform the polygon to a tensor
             polygons_per_instance = [_make_array(p) for p in polygons_per_instance]
             for polygon in polygons_per_instance:
-                assert len(polygon) % 2 == 0 and len(polygon) >= 6
+                #assert len(polygon) % 2 == 0 and len(polygon) >= 6
+                assert len(polygon) % 2 == 0
             return polygons_per_instance
 
         self.polygons: List[List[np.ndarray]] = [
