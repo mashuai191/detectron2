@@ -171,7 +171,8 @@ def transform_instance_annotations(
         segm = annotation["segmentation"]
         if isinstance(segm, list):
             # polygons
-            polygons = [np.asarray(p).reshape(-1, 2) for p in segm]
+            #polygons = [np.asarray(p).reshape(-1, 2) for p in segm]
+            polygons = [np.asarray(p).reshape(-1, 2) for p in segm if p] # shuai add
             annotation["segmentation"] = [
                 p.reshape(-1) for p in transforms.apply_polygons(polygons)
             ]
