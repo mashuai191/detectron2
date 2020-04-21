@@ -579,12 +579,12 @@ class StandardROIHeads(ROIHeads):
         del targets
 
         
-        print (len(features), len(proposals))
+        #print (len(features), len(proposals))
         #print (features)
         #print (proposals)
         if self.training:
             losses = self._forward_box(features, proposals)
-            print (type(losses))
+            #print (type(losses))
             #print ("1111", losses)
             # Usually the original proposals used by the box head are used by the mask, keypoint
             # heads. But when `self.train_on_pred_boxes is True`, proposals will contain boxes
@@ -653,7 +653,8 @@ class StandardROIHeads(ROIHeads):
         box_features = self.box_head(box_features)
         pred_class_logits, pred_proposal_deltas = self.box_predictor(box_features)
         del box_features
-
+        print ("pred_class_logits", pred_class_logits)
+        print ("pred_proposal_deltas", pred_proposal_deltas)
         outputs = FastRCNNOutputs(
             self.box2box_transform,
             pred_class_logits,
