@@ -19,7 +19,7 @@ The registered object will be called with `obj(cfg, input_shape)`.
 """
 
 
-def mask_rcnn_loss(pred_mask_logits, instances, vis_period=0):
+def mask_rcnn_loss(pred_mask_logits, instances, vis_period=5):
     """
     Compute the mask prediction loss defined in the Mask R-CNN paper.
 
